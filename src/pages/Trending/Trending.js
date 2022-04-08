@@ -41,8 +41,6 @@ function Trending() {
     <div>
         <span className='pageTitle'>Trending</span>
         
-
-
         <Box sx={{ position: "relative", height: 1 }}>
           {loading ? (
             <LoadingScreen />
@@ -68,7 +66,8 @@ function Trending() {
             </>
           )}
         </Box>
-        <CustomPagination setPage={setPage}/>
+        
+        <CustomPagination setPage={setPage} />
     </div>
   )
 }

@@ -5,7 +5,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import LoadingScreen from '../../componets/LoadingScreen';
 import CustomPagination from '../../componets/Pagination/CustomPagination';
+import Genres from '../../componets/SingleContent/Genres';
 import SingleContent from '../../componets/SingleContent/SingleContent';
+import useGenre from '../../hooks/useGenres';
 
 function Movies() {
   const [page, setPage] = useState(1)
@@ -13,8 +15,10 @@ function Movies() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [numOfPages, setNumOfPages] = useState()
+    const [selectedGenres, setSelectedGenres] = useState([])
+    const [genres, setGenres] = useState([])
+    const genreforURL = useGenre(selectedGenres);
 
-   
       useEffect(() => {
         
         const fetchMovies = async () => {
@@ -22,7 +26,7 @@ function Movies() {
           try{
             const API_KEY = `21a18fd40187d76bd381816c4a8949ea`
             const  {data}  = await axios.get(
-              `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
+              `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
             );
             
                 console.log(data)
@@ -38,12 +42,19 @@ function Movies() {
         };
         
         fetchMovies()  
-      }, [page]);
+      }, [page, genreforURL]);
 
   return (
     <div>
-        <span className='pageTitle'>Movies</span>
-        
+        <span className='pageTitle'>Dicover Movies</span>
+        <Genres
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+        genres={genres}
+        setGenres={setGenres}
+        setPage={setPage}
+        type='movie'
+        />
         <Box sx={{ position: "relative", height: 1 }}>
           {loading ? (
             <LoadingScreen />
@@ -69,7 +80,10 @@ function Movies() {
             </>
           )}
         </Box>
-        <CustomPagination setPage={setPage}/>
+        {numOfPages > 1 && (
+        <CustomPagination setPage={setPage} numOfPages={numOfPages}/>
+        )}
+        
     </div>
   )
 }
