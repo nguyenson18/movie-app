@@ -39,7 +39,7 @@ function Trending() {
       }, [page]);
   return (
     <div>
-        <span className='pageTitle'>Trending</span>
+        <span className='pageTitle'>Trending Today</span>
         
         <Box sx={{ position: "relative", height: 1 }}>
           {loading ? (
