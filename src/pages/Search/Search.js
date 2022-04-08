@@ -7,7 +7,7 @@ import axios from 'axios';
 import SingleContent from '../../componets/SingleContent/SingleContent';
 import CustomPagination from '../../componets/Pagination/CustomPagination';
 import LoadingScreen from '../../componets/LoadingScreen';
-import { color } from '@mui/system';
+
 
 function Search() {
   const [type, setType] = useState(0);
@@ -39,7 +39,7 @@ function Search() {
       setNumOfPages(data.total_pages);
       // console.log(data);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 

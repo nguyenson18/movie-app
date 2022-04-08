@@ -47,7 +47,6 @@ export default function ContentModal({children, media_type, id}) {
           `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${API_KEY}&language=en-US`
         );
         
-            console.log(data.results)
         setContent(data);
         setError("");
       }catch(error)
@@ -66,7 +65,7 @@ export default function ContentModal({children, media_type, id}) {
             `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${API_KEY}&language=en-US`
           );
           
-              console.log(data.results)
+            
           setVideo(data.results[0]?.key);
           setError("");
         }catch(error)

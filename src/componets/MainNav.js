@@ -19,7 +19,6 @@ export default function SimpleBottomNavigation() {
     else if(value === 3) navigate("/search");
   }, [value, navigate])
   
- console.log(value)
   return (
     <Box sx={{  }}>
       <BottomNavigation
