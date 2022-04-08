@@ -41,7 +41,7 @@ function Trending() {
     <div>
         <span className='pageTitle'>Trending Today</span>
         
-        <Box sx={{ position: "relative", height: 1 }}>
+        <Box >
           {loading ? (
             <LoadingScreen />
           ) : (

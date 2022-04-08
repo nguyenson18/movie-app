@@ -42,7 +42,7 @@ function Series() {
       };
       
       fetchMovies()  
-    }, [page, genreforURL]);
+    }, [genreforURL, page ]);
   return (
     <div>
         <span className='pageTitle'>Discover Series</span>
@@ -54,7 +54,7 @@ function Series() {
         setPage={setPage}
         type="tv"
         />
-        <Box sx={{ position: "relative", height: 1 }}>
+        <Box >
           {loading ? (
             <LoadingScreen />
           ) : (

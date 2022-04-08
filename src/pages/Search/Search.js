@@ -37,9 +37,10 @@ function Search() {
       );
       setContent(data.results);
       setNumOfPages(data.total_pages);
+      setError("");
       // console.log(data);
     } catch (error) {
-      setError(error.message);
+      setError("");
     }
   };
 
