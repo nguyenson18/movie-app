@@ -3,10 +3,9 @@ import Badge from '@mui/material/Badge';
 import { img_300, unavailable } from "../../config/config"
 import './singleContent.css'
 import ContentModal from '../contentModal/ContentModal';
-import { keys } from 'lodash';
+
 
 const SingleContent = ({
-   
     id,
     poster,
     title,
