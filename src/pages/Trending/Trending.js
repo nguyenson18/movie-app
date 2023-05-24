@@ -6,6 +6,8 @@ import { Alert } from '@mui/material';
 import LoadingScreen from '../../componets/LoadingScreen';
 import { Box } from '@mui/system';
 import CustomPagination from '../../componets/Pagination/CustomPagination';
+import apiService from '../../app/apiService';
+import { API_KEY } from '../../app/config';
 
 function Trending() {
   const [page, setPage] = useState(1)
@@ -18,10 +20,7 @@ function Trending() {
         const fetchTrending = async () => {
           setLoading(true);
           try{
-            const API_KEY = `21a18fd40187d76bd381816c4a8949ea`
-            const  {data}  = await axios.get(
-              `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${page}`
-            );
+            const { data } = await apiService.get(`trending/all/day?api_key=${API_KEY}&page=${page}`)
             setContent(data.results);
             setError("");
           }catch(error)

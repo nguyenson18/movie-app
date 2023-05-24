@@ -8,6 +8,8 @@ import CustomPagination from '../../componets/Pagination/CustomPagination';
 import Genres from '../../componets/SingleContent/Genres';
 import SingleContent from '../../componets/SingleContent/SingleContent';
 import useGenre from '../../hooks/useGenres';
+import apiService from '../../app/apiService';
+import { API_KEY } from '../../app/config';
 
 function Movies() {
   const [page, setPage] = useState(1)
@@ -24,12 +26,7 @@ function Movies() {
         const fetchMovies = async () => {
           setLoading(true);
           try{
-            const API_KEY = `21a18fd40187d76bd381816c4a8949ea`
-            const  {data}  = await axios.get(
-              `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
-            );
-            
-              
+            const { data } = await apiService.get(`discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`)
             setContent(data.results);
             setNumOfPages(data.total_pages);
             setError("");

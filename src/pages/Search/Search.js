@@ -7,6 +7,8 @@ import axios from 'axios';
 import SingleContent from '../../componets/SingleContent/SingleContent';
 import CustomPagination from '../../componets/Pagination/CustomPagination';
 import LoadingScreen from '../../componets/LoadingScreen';
+import apiService from '../../app/apiService';
+import { API_KEY } from '../../app/config';
 
 
 function Search() {
@@ -29,12 +31,7 @@ function Search() {
 
   const fetchSearch = async () => {
     try {
-      const API_KEY = `21a18fd40187d76bd381816c4a8949ea`
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
-          API_KEY
-        }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
-      );
+      const { data } = await apiService.get(`search/${type ? "tv" : "movie"}?api_key=${API_KEY}&language=en-US&query=${searchText}&page=${page}&include_adult=false`)
       setContent(data.results);
       setNumOfPages(data.total_pages);
       setError("");
